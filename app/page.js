@@ -1,7 +1,22 @@
-import Image from "next/image";
 import Search from "./components/Search";
 import List from "./components/List";
 
+const cities = [
+  {
+    code: "75000",
+    name: "Paris",
+    department: "75",
+    zipCode: "75000",
+    population: "2140526",
+  },
+  {
+    code: "13000",
+    name: "Marseille",
+    department: "13",
+    zipCode: "13000",
+    population: "861635",
+  },
+];
 export default function Home() {
   return (
     <main className=" items-center justify-between p-24">
@@ -9,7 +24,7 @@ export default function Home() {
         Recherche par nom de commune
       </h1>
       <Search />
-      <List />
+      <List cities={cities} />
     </main>
   );
 }
