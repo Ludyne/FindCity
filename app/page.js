@@ -9,7 +9,6 @@ import useSWR from "swr";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
-  const [cities, setCities] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { data, error, isLoading } = useSWR(
     searchTerm.trim() !== ""
