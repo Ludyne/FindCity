@@ -1,7 +1,23 @@
-export default function Search() {
+"use client";
+
+import { useState, useEffect } from "react";
+
+export default function Search({ setSearchTerm }) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(inputValue);
+    setInputValue("");
+  };
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2 className="uppercase font-bold mb-1 mt-4 text-sm">
           Recherche par nom de commune
         </h2>
@@ -11,10 +27,12 @@ export default function Search() {
             type="text"
             id="search"
             placeholder="Paris, Marseille, Lyon..."
+            value={inputValue}
+            onChange={handleChange}
           />
         </label>
         <button className="p-2 rounded-md bg-black text-white" type="submit">
-          Rechercher
+          Lancer la recherche
         </button>
       </form>
     </div>

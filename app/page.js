@@ -1,30 +1,32 @@
+"use client";
+
 import Search from "./components/Search";
 import List from "./components/List";
+import { useState } from "react";
 
-const cities = [
-  {
-    code: "75000",
-    name: "Paris",
-    department: "75",
-    zipCode: "75000",
-    population: "2140526",
-  },
-  {
-    code: "13000",
-    name: "Marseille",
-    department: "13",
-    zipCode: "13000",
-    population: "861635",
-  },
-];
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 export default function Home() {
+  const [cities, setCities] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data, error, isLoading } = useSWR(
+    searchTerm.trim() !== ""
+      ? `https://geo.api.gouv.fr/communes?nom=${searchTerm}`
+      : null,
+    fetcher
+  );
+
   return (
     <main className=" items-center justify-between p-24">
       <h1 className="text-4xl border-b border-gray-500 pb-2">
         Recherche par nom de commune
       </h1>
-      <Search />
-      <List cities={cities} />
+      <Search setSearchTerm={setSearchTerm} />
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {data && data.length > 0 && <List cities={data} />}
     </main>
   );
 }
