@@ -1,6 +1,10 @@
 # FindCity 🇫🇷
 
-### Description du projet 📝
+## Aperçu 📸
+
+<img src="./public/findCity_preview.png" alt="Description de l'image" width="800"/>
+
+## Description du projet 📝
 
 FindCity est une application web qui permet de rechercher des villes françaises et d'obtenir des informations détaillées sur celles-ci.
 
@@ -26,3 +30,7 @@ FindCity est une application web qui permet de rechercher des villes françaises
 - Affichage des informations détaillées (population, code postal, département)
 - Interface responsive et moderne
 - Possibilité de modifier le format de la population
+
+### Liens utiles 🔗
+
+[Api](https://geo.api.gouv.fr/decoupage-administratif/communes)
